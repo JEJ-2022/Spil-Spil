@@ -1,5 +1,5 @@
 PShape t;
-float x= 100;
+float x=100;
 float y=100;
 float Speed=2.5;
 
@@ -72,4 +72,8 @@ if (x>600 || x<0 || y>600 || y<0) {
     textSize(100);
     text("Press SHIFT to restart", X/2-210, Y/2-210);
   }
+}
+
+void Restart(){
+
 }
