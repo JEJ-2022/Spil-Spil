@@ -17,9 +17,9 @@ void draw() {
   lines();
   borders();
 
-  // lights();
+  lights();
 
-  //
+  // flyttter tank i den retning som man sidst har trykket
   move();
   drawTank();
   GameOver();
@@ -94,6 +94,6 @@ void GameOver() {
 void restart() {
   x=100;
   y=100;
-  // sæt draw til at loope igen
+  // sæt draw til at loope igen / start spillet
   loop();
 }
