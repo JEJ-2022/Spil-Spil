@@ -3,28 +3,26 @@ float x=100;
 float y=100;
 float Speed=2.5;
 
+
 void setup() {
   size(600, 600, P3D);
   t = loadShape("T-95.obj");
-
-
   textAlign(CENTER);
 }
 
 void draw() {
   background(250);
 
-  //  frameRate(12); // skal skal være i setup!! men det er HARAM at bruge frameRate
   //println(mouseX+":"+mouseY);
   lines();
   borders();
 
+  // lights();
 
-  lights();
-
+  //
+  move();
   drawTank();
   GameOver();
-  
 }
 
 void drawTank() {
@@ -51,6 +49,14 @@ void lines() {
 }
 
 void keyPressed() {
+  // den skal bare være tom ;)
+  if (keyCode==SHIFT) {
+    restart();
+  }
+}
+
+void move() {
+  // flyyter tank hele tiden og ikke kun ved et enkelt tastetryk
   if (keyCode==UP) {
     y=y-Speed;
   }
@@ -63,17 +69,31 @@ void keyPressed() {
   if (keyCode==RIGHT) {
     x=x+Speed;
   }
-  
 }
-void GameOver(){
-if (x>600 || x<0 || y>600 || y<0) {
-    textSize(200);
-    text("Game over", X/2, Y/2);
-    textSize(100);
-    text("Press SHIFT to restart", X/2-210, Y/2-210);
+
+
+
+void GameOver() {
+  println(x);
+  if (x>600 || x<0 || y>600 || y<0) {
+
+    textSize(50);
+    // SORT
+    fill(0);
+    // WTF :) X/2 og Y/2 ??? I skal bruge widt og height - x,y er positionen for jeres kampvogn
+    // text("Game over", X/2, Y/2);
+    text("Game over", width/2, height/2);
+    
+    textSize(25);
+    //text("Press SHIFT to restart", X/2-210, Y/2-210);
+    text("Press SHIFT to restart", width/2, height/2-210);
+    noLoop();
   }
 }
 
-void Restart(){
-
+void restart() {
+  x=100;
+  y=100;
+  // sæt draw til at loope igen
+  loop();
 }
