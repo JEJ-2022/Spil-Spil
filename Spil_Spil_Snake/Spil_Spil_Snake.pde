@@ -23,8 +23,8 @@ void draw() {
   lights();
 
   drawTank();
-  keyPressed();
   GameOver();
+  
 }
 
 void drawTank() {
@@ -63,10 +63,10 @@ void keyPressed() {
   if (keyCode==RIGHT) {
     x=x+Speed;
   }
+  
 }
-
-void GameOver() {
-  if (x>600 || x<0 || y>600 || y<0) {
+void GameOver(){
+if (x>600 || x<0 || y>600 || y<0) {
     textSize(200);
     text("Game over", X/2, Y/2);
     textSize(100);
