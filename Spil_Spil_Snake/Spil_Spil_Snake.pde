@@ -14,7 +14,7 @@ void draw() {
   background(250);
 
   //println(mouseX+":"+mouseY);
-  lines();
+  //lines();
   borders();
 
   lights();
@@ -50,7 +50,7 @@ void lines() {
 
 void keyPressed() {
   // den skal bare være tom ;)
-  if (keyCode==SHIFT) {
+  if (keyCode==ENTER) {
     restart();
   }
 }
@@ -59,9 +59,11 @@ void move() {
   // flyyter tank hele tiden og ikke kun ved et enkelt tastetryk
   if (keyCode==UP) {
     y=y-Speed;
+    
   }
   if (keyCode==DOWN) {
     y=y+Speed;
+    //rotateX(3*PI/2);
   }
   if (keyCode==LEFT) {
     x=x-Speed;
@@ -85,15 +87,17 @@ void GameOver() {
     text("Game over", width/2, height/2);
     
     textSize(25);
-    //text("Press SHIFT to restart", X/2-210, Y/2-210);
-    text("Press SHIFT to restart", width/2, height/2-210);
+    //text("Press ENTER to restart", X/2-210, Y/2-210);
+    text("Press ENTER to restart", width/2, height/2-210);
     noLoop();
   }
 }
 
 void restart() {
+  if (x>600 || x<0 || y>600 || y<0) {
   x=100;
   y=100;
   // sæt draw til at loope igen / start spillet
   loop();
+  }
 }
