@@ -1,13 +1,17 @@
 PShape t;
-float x=100;
-float y=100;
-float Speed=2.5;
-
+float x = 100;//tankens x-position
+float y = 100;//tankens y-position
+float speed = 2;
+int score = 0;
+//int[] eTank = new int[2];
+float ex = x;//eTanks x-position
+float ey = y;//eTanks y-position
 
 void setup() {
   size(600, 600, P3D);
   t = loadShape("T-95.obj");
   textAlign(CENTER);
+  gameInit();
 }
 
 void draw() {
@@ -16,13 +20,15 @@ void draw() {
   //println(mouseX+":"+mouseY);
   //lines();
   borders();
-
+  displayenemyTank();
+  
   lights();
 
   // flyttter tank i den retning som man sidst har trykket
   move();
   drawTank();
   GameOver();
+  tankCollision();
 }
 
 void drawTank() {
@@ -58,25 +64,24 @@ void keyPressed() {
 void move() {
   // flyyter tank hele tiden og ikke kun ved et enkelt tastetryk
   if (keyCode==UP) {
-    y=y-Speed;
-    
+    y=y-speed;
   }
   if (keyCode==DOWN) {
-    y=y+Speed;
+    y=y+speed;
     //rotateX(3*PI/2);
   }
   if (keyCode==LEFT) {
-    x=x-Speed;
+    x=x-speed;
   }
   if (keyCode==RIGHT) {
-    x=x+Speed;
+    x=x+speed;
   }
 }
 
 
 
 void GameOver() {
-  println(x);
+  //println(x);
   if (x>600 || x<0 || y>600 || y<0) {
 
     textSize(50);
@@ -100,4 +105,30 @@ void restart() {
   // sæt draw til at loope igen / start spillet
   loop();
   }
+}
+
+void placeEnemyTank(){
+  ex=(int(random(20,width/20)))*20;
+  ey=(int(random(20,height/20)))*20;
+}
+
+void displayenemyTank(){
+fill(255,0,0);
+rectMode(CENTER);
+rect(ex,ey,20,20);
+}
+
+void tankCollision(){
+  
+  println(ex, ey, x, y);
+if(ex == x && ey == y){
+  text("GJ", height/2, width/2);
+  
+  placeEnemyTank();
+  }
+}
+
+void gameInit(){
+  
+ placeEnemyTank();
 }
